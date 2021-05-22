@@ -1,19 +1,27 @@
 import trae from 'trae';
 
-const clientId = '0cae6467ef4e4958bee63238713448b8';
+const clientId = '9a3fdf1f66d842449fcd852d653d3344';
 
-const clientSecret = '5EgU5CZzvsXYhSjlhR68jZXcWWbxEYoS';
+const clientSecret = '52T9XBISSf2JsIdwW4JFEOhM4rg1Y6LK';
 
-const region = 'eu';
-const API_URL= `https://${region}.battle.net/ouath/token`;
+const region = 'us';
+const API_URL= `https://${region}.battle.net/oauth/token`;
 
 const getToken = () =>{
 
+    const data = 'grant_type=client_credentials';
+    
+    const auth = btoa(`${clientId}:${clientSecret}`);
+    
     const config = {
-        auth: { username: clientId, password: clientSecret}
+        headers: { 
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${auth}`,
+            },
+        bodyType: 'json'
     }
 
-    return trae.post(API_URL, { grant_type: 'client_credentials'}, config);
+    return trae.post(API_URL, data, config);
 }
 
-export default getToken;
+export { getToken };
