@@ -1,10 +1,19 @@
 <template lang="pug">
     .container 
-        router-view 
+        header-bar 
+        router-view
+        footer-bar 
 </template>
 
 <script>
+import HeaderBar from '@/components/HeaderBar/Index'
+import FooterBar from '@/components/Footer/Index'
+
 export default {
-    name: 'MainLayout'
+    name: 'MainLayout',
+    components: {
+        HeaderBar,
+        FooterBar
+    }
 }
 </script>
