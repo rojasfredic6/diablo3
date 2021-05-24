@@ -2,17 +2,25 @@
     .grid-container 
         .grid-item.item-left 
             top-heroes(v-if="hasHeroes", :heroes="topHeroes")
+            heroes-list(v-if="hasHeroesList" :heroes="heroesList")
+            progress-list(:acts="profileData.progression")
         .grid-item.item-right 
-            h1 Derecha
+            player-stats(:stats="statsData")
 </template>
 
 <script>
 import TopHeroes from './TopHeroes/Index'
+import HeroesList from './HeroesList/Index'
+import ProgressList from './ProgressList/Index'
+import PlayerStats from './PlayerStats/Index.vue'
 
 export default {
     name: 'MainBlock',
     components: {
-        TopHeroes
+        TopHeroes,
+        HeroesList,
+        ProgressList,
+        PlayerStats
     },
     props: {
         profileData: {
@@ -26,6 +34,16 @@ export default {
         },
         topHeroes(){
             return this.profileData.heroes.slice(0,3);
+        },
+        hasHeroesList(){
+            return this.profileData.heroes.length > 3
+        },
+        heroesList(){
+            return this.profileData.heroes.slice(3, this.profileData.heroes.length)
+        },
+        statsData(){
+            const { paragonLevel, kills, timePlayed } = this.profileData
+            return { paragonLevel, kills, timePlayed};
         }
     }
 }
