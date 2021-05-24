@@ -35,13 +35,12 @@ const routerOptions = [
 const routes = routerOptions.map(r => {
   return {
     ...r,
-  components: () => import(`@/views/${r.name}/Index.vue`)
+  component: () => import(`../views/${r.name}/Index.vue`)
   }
 })
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
   routes
 })
 
