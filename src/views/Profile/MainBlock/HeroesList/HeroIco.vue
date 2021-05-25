@@ -1,5 +1,5 @@
 <template lang="pug">
-    .hero-ico.d-flex.align-items-center 
+    .hero-ico.d-flex.align-items-center.hover-cursor-pointer(@click="goToHero(hero.id)")
         span.hero-image.border(:class="heroClassImg")
         span.hero-name.ml-2.font-weight-bold(:class="{'text-danger': hero.hardcore}") {{ hero.name }}
         img.ml-2(v-if="hero.seasonal", src="@/assets/img/leaf.png",
@@ -9,8 +9,13 @@
 </template>
 
 <script>
+import goToHero from '@/mixins/goToHero'
+
 export default {
     name: 'Herolco',
+    mixins:[
+        goToHero
+    ],
     props:{
         hero:{
             required: true,

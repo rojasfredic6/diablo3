@@ -1,5 +1,5 @@
 <template lang="pug">
-    .hero-portrait-wrapper.mb-5.mb-sm-0
+    .hero-portrait-wrapper.mb-5.mb-sm-0.hover-cursor-pointer(@click="goToHero(hero.id)")
         .bg-secondary.d-flex.justify-content-center.p-3.p-sm-0
             div(:class="heroClass")
         .p-2.bg-dark 
@@ -17,9 +17,11 @@
 </template>
 
 <script>
+import goToHero from '@/mixins/goToHero'
 
 export default {
     name: 'TopHero',
+    mixins: [ goToHero ],
     props: {
         hero: {
             type: Object,
