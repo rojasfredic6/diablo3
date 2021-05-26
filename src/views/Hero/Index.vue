@@ -5,6 +5,7 @@
         b-row 
             b-col(md="12", lg="8", order-lg="2")
                 base-loading(v-if="isLoadingItems")
+                hero-items(v-if="items", :items="items")
             b-col(md="12", lg="4", order-lg="1")
                 template(v-if="hero")
                     hero-attributes(:attributes="detailStats")
@@ -18,12 +19,13 @@ import { getApiHero, getApiDetailedHeroItems } from '@/api/search'
 import HeroDetailHeader from './HeroDetailHeader';
 import HeroAttributes from './HeroAttributes/Index';
 import HeroSkills from './HeroSkills/Index';
+import HeroItems from './HeroItems/Index'
 
 export default {
     name: 'HeroView',
     mixins: [ setError],
     components: { BaseLoading, HeroDetailHeader,
-    HeroAttributes, HeroSkills },
+    HeroAttributes, HeroSkills, HeroItems },
     data(){
         return{
             isLoadingHero : false,
